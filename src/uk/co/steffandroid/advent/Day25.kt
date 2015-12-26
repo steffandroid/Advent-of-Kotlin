@@ -2,13 +2,9 @@ package uk.co.steffandroid.advent
 
 class Day25 : Puzzle {
 
-    fun triangle(input: Int): Int {
-        return (input * (input + 1)) / 2
-    }
+    fun triangle(input: Int) = (input * (input + 1)) / 2
 
-    fun position(row: Int, column: Int): Int {
-        return triangle(column) + (column * (row - 1)) + triangle(row - 2)
-    }
+    fun position(row: Int, column: Int) = triangle(column + row - 1) - (row - 1)
 
     fun code(position: Int): Int {
         var code: Long = 20151125
