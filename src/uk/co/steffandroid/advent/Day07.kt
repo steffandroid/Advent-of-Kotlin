@@ -5,12 +5,10 @@ import java.util.*
 
 class Day07 : Puzzle {
     val input = File("src/uk/co/steffandroid/advent/input/day07.input")
-    val wires: Map<String, Pair<String, String>> = input.readLines().map { line ->
+    val wires = input.readLines().map { line ->
         val pair = line.split(" -> ")
         Pair(pair[1], pair[0])
-    }.toMapBy { pair ->
-        pair.first
-    }
+    }.toMap()
 
     var memo = HashMap<String, Int>()
 
@@ -20,7 +18,7 @@ class Day07 : Puzzle {
             if (key[0].isDigit()) {
                 result = key.toInt()
             } else {
-                val split = wires[key]!!.second.split(" ")
+                val split = wires[key]!!.split(" ")
                 result = when (split.count()) {
                     1 -> get(split[0])
                     2 -> get(split[1]).inv()

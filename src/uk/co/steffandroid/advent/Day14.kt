@@ -9,16 +9,16 @@ class Day14 : Puzzle {
     override fun part1(): String {
         return input.readLines()
                 .map { line ->
-                    val nums = Regex("\\d+").findAll(line).toList()
-                    Reindeer(nums[0].value.toInt(), nums[1].value.toInt(), nums[2].value.toInt()).distance(2503)
+                    val nums = Regex("\\d+").findAll(line).map { it.value.toInt() }.toList()
+                    Reindeer(nums[0], nums[1], nums[2]).distance(2503)
                 }.max().toString()
     }
 
     override fun part2(): String {
         val reindeer = input.readLines()
                 .map { line ->
-                    val nums = Regex("\\d+").findAll(line).toList()
-                    Reindeer(nums[0].value.toInt(), nums[1].value.toInt(), nums[2].value.toInt())
+                    val nums = Regex("\\d+").findAll(line).map { it.value.toInt() }.toList()
+                    Reindeer(nums[0], nums[1], nums[2])
                 }
         for (i in 1..2503) {
             val winning = reindeer.sortedByDescending { it.distance(i) }[0]
